@@ -1,42 +1,32 @@
-\# 🔐 LockBox
-
-
+# 🔐 LockBox
 
 A secure web-based digital secret storage system.
 
+## Tech Stack
 
+- React.js
 
-\## Tech Stack
+- Spring Boot
 
+- Spring Security
 
+- JWT
 
-\- React.js
+- AES Encryption
 
-\- Spring Boot
+- MySQL
 
-\- Spring Security
+- Spring Data JPA
 
-\- JWT
+- Hibernate
 
-\- AES Encryption
+## Project Structure
 
-\- MySQL
+- `backend/` - Spring Boot REST API
 
-\- Spring Data JPA
+- `frontend/` - React.js application
 
-\- Hibernate
+- `database/` - Database scripts
 
-
-
-\## Project Structure
-
-
-
-\- `backend/` - Spring Boot REST API
-
-\- `frontend/` - React.js application
-
-\- `database/` - Database scripts
-
-\- `docs/` - Project documentation
+- `docs/` - Project documentation
 
