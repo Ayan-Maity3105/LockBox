@@ -1,0 +1,129 @@
+.security-page {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(20, 45, 100, 0.18),
+      transparent 45%
+    ),
+    #040812;
+}
+
+.security-mesh {
+  position: fixed;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  opacity: 0.65;
+
+  pointer-events: none;
+}
+
+/* Network lines */
+
+.mesh-lines line {
+  stroke: rgba(60, 130, 246, 0.20);
+  stroke-width: 1;
+}
+
+/* Network nodes */
+
+.mesh-nodes circle {
+  fill: #5c7cff;
+  filter: drop-shadow(0 0 7px rgba(92, 124, 255, 0.9));
+
+  animation: nodePulse 4s ease-in-out infinite;
+}
+
+.mesh-nodes circle:nth-child(3n) {
+  fill: #22d3ee;
+
+  animation-delay: 1s;
+}
+
+.mesh-nodes circle:nth-child(4n) {
+  animation-delay: 2s;
+}
+
+@keyframes nodePulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.6);
+  }
+}
+
+/* Background atmospheric glows */
+
+.mesh-glow {
+  position: fixed;
+
+  border-radius: 50%;
+
+  filter: blur(120px);
+
+  pointer-events: none;
+
+  opacity: 0.25;
+}
+
+.mesh-glow-purple {
+  width: 550px;
+  height: 550px;
+
+  top: -250px;
+  left: 15%;
+
+  background: rgba(124, 92, 255, 0.35);
+
+  animation: purpleFloat 18s ease-in-out infinite alternate;
+}
+
+.mesh-glow-cyan {
+  width: 500px;
+  height: 500px;
+
+  right: -220px;
+  bottom: -200px;
+
+  background: rgba(34, 211, 238, 0.25);
+
+  animation: cyanFloat 20s ease-in-out infinite alternate;
+}
+
+@keyframes purpleFloat {
+  from {
+    transform: translate(0, 0);
+  }
+
+  to {
+    transform: translate(120px, 100px);
+  }
+}
+
+@keyframes cyanFloat {
+  from {
+    transform: translate(0, 0);
+  }
+
+  to {
+    transform: translate(-120px, -100px);
+  }
+}
+
+.security-content {
+  position: relative;
+  z-index: 2;
+
+  min-height: 100vh;
+}
