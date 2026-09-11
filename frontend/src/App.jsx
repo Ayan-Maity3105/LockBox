@@ -1,56 +1,38 @@
-import SecurityMeshBackground from './components/SecurityMeshBackground';
-import GlassPanel from './components/GlassPanel';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+
+import Splash from './pages/Splash';
 
 function App() {
   return (
-    <SecurityMeshBackground>
+    <BrowserRouter>
 
-      <div
-        style={{
-          minHeight: '100vh',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '40px'
-        }}
-      >
+      <Routes>
 
-        <GlassPanel>
-          <div
-            style={{
-              padding: '50px',
-              textAlign: 'center'
-            }}
-          >
+        <Route path="/" element={<Splash />} />
 
-            <div style={{ fontSize: '48px' }}>
-              🔐
-            </div>
+        <Route
+          path="/register"
+          element={<h1>Register Page</h1>}
+        />
 
-            <h1
-              style={{
-                marginTop: '15px',
-                fontSize: '36px'
-              }}
-            >
-              LOCKBOX
-            </h1>
+        <Route
+          path="/login"
+          element={<h1>Login Page</h1>}
+        />
 
-            <p
-              style={{
-                marginTop: '10px',
-                color: 'var(--text-secondary)'
-              }}
-            >
-              Your secrets. Secured.
-            </p>
+        <Route
+          path="/dashboard"
+          element={<h1>Dashboard</h1>}
+        />
 
-          </div>
-        </GlassPanel>
+        <Route
+          path="*"
+          element={<Navigate to="/" replace />}
+        />
 
-      </div>
+      </Routes>
 
-    </SecurityMeshBackground>
+    </BrowserRouter>
   );
 }
 
