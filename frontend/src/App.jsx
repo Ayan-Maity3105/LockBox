@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import Splash from './pages/Splash';
 import Register from './pages/Register';
+import Login from './pages/Login';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
 
         <Route
           path="/login"
-          element={<h1>Login Page</h1>}
+          element={<Login />}
         />
 
         <Route

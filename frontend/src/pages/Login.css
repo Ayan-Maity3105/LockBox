@@ -1,0 +1,464 @@
+.login-page {
+  min-height: 100vh;
+  padding: 28px 40px 50px;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.login-header span {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  color: var(--text-primary);
+}
+
+
+/* LAYOUT */
+
+.login-layout {
+  max-width: 1050px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+
+  gap: 28px;
+
+  align-items: stretch;
+}
+
+
+/* LOGIN CARD */
+
+.login-card {
+  padding: 48px 46px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-title {
+  margin-bottom: 30px;
+}
+
+.login-title h1 {
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.8px;
+}
+
+.login-title p {
+  margin-top: 9px;
+
+  color: var(--text-secondary);
+
+  font-size: 13px;
+}
+
+
+/* SUCCESS */
+
+.login-success-message {
+  margin-bottom: 20px;
+
+  padding: 11px 13px;
+
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  border-radius: 9px;
+
+  background: rgba(34, 197, 94, 0.08);
+
+  color: #86efac;
+
+  font-size: 12px;
+}
+
+
+/* FORM */
+
+.form-group {
+  margin-bottom: 19px;
+}
+
+.form-group label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: var(--text-secondary);
+
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.input-wrapper {
+  height: 47px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 0 13px;
+
+  border: 1px solid var(--border);
+  border-radius: 11px;
+
+  background: rgba(0, 0, 0, 0.16);
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.input-wrapper > svg,
+.input-symbol {
+  flex-shrink: 0;
+
+  color: var(--text-muted);
+}
+
+.input-wrapper:focus-within {
+  border-color: rgba(124, 92, 255, 0.65);
+
+  background: rgba(124, 92, 255, 0.05);
+
+  box-shadow:
+    0 0 0 3px rgba(124, 92, 255, 0.08);
+}
+
+.input-wrapper input {
+  width: 100%;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: var(--text-primary);
+
+  font-size: 13px;
+}
+
+.input-wrapper input::placeholder {
+  color: var(--text-muted);
+}
+
+
+/* PASSWORD TOGGLE */
+
+.password-toggle {
+  display: flex;
+  align-items: center;
+
+  padding: 4px;
+
+  border: none;
+
+  background: transparent;
+
+  color: var(--text-muted);
+
+  transition: color 0.2s ease;
+}
+
+.password-toggle:hover {
+  color: var(--text-primary);
+}
+
+
+/* ERROR */
+
+.login-error {
+  margin: 3px 0 16px;
+
+  padding: 10px 12px;
+
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-radius: 9px;
+
+  background: rgba(239, 68, 68, 0.08);
+
+  color: #fca5a5;
+
+  font-size: 12px;
+}
+
+
+/* LOGIN BUTTON */
+
+.login-button {
+  width: 100%;
+  height: 47px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  margin-top: 8px;
+
+  border: none;
+  border-radius: 11px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(124, 92, 255, 0.95),
+    rgba(91, 75, 190, 0.95)
+  );
+
+  color: white;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.login-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 28px rgba(124, 92, 255, 0.25);
+}
+
+.login-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+
+/* REGISTER LINK */
+
+.register-link {
+  display: flex;
+  justify-content: center;
+
+  gap: 6px;
+
+  margin-top: 23px;
+
+  color: var(--text-muted);
+
+  font-size: 12px;
+}
+
+.register-link button {
+  border: none;
+
+  background: transparent;
+
+  color: var(--purple-light);
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.register-link button:hover {
+  text-decoration: underline;
+}
+
+
+/* VAULT CARD */
+
+.vault-card {
+  min-height: 430px;
+
+  padding: 48px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.vault-icon {
+  width: 100px;
+  height: 100px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 26px;
+
+  border-radius: 28px;
+
+  color: #ef4444;
+
+  background: rgba(239, 68, 68, 0.08);
+
+  border: 1px solid rgba(239, 68, 68, 0.22);
+
+  box-shadow:
+    0 0 40px rgba(239, 68, 68, 0.12);
+
+  transition:
+    color 0.5s ease,
+    background 0.5s ease,
+    border-color 0.5s ease,
+    box-shadow 0.5s ease,
+    transform 0.5s ease;
+}
+
+
+/* UNLOCKED */
+
+.vault-icon.vault-unlocked {
+  color: #22c55e;
+
+  background: rgba(34, 197, 94, 0.08);
+
+  border-color: rgba(34, 197, 94, 0.25);
+
+  box-shadow:
+    0 0 45px rgba(34, 197, 94, 0.18);
+
+  animation: unlockPulse 0.7s ease-out;
+}
+
+.vault-card h2 {
+  font-size: 18px;
+
+  font-weight: 600;
+
+  letter-spacing: 2px;
+}
+
+.vault-message {
+  margin-top: 11px;
+
+  color: var(--text-secondary);
+
+  font-size: 13px;
+}
+
+.vault-divider {
+  width: 90px;
+  height: 1px;
+
+  margin: 28px 0 20px;
+
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.vault-status {
+  color: #ef4444;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  letter-spacing: 3px;
+
+  transition:
+    color 0.5s ease,
+    transform 0.5s ease;
+}
+
+.vault-status.status-unlocked {
+  color: #22c55e;
+
+  animation: statusAppear 0.5s ease-out;
+}
+
+.authenticating-text {
+  margin-top: 15px;
+
+  color: var(--text-muted);
+
+  font-size: 11px;
+
+  animation: authFade 1s ease-in-out infinite alternate;
+}
+
+
+/* ANIMATIONS */
+
+@keyframes unlockPulse {
+
+  0% {
+    transform: scale(1);
+  }
+
+  40% {
+    transform: scale(1.12);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+
+}
+
+@keyframes statusAppear {
+
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+@keyframes authFade {
+
+  from {
+    opacity: 0.4;
+  }
+
+  to {
+    opacity: 1;
+  }
+
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 800px) {
+
+  .login-layout {
+    grid-template-columns: 1fr;
+
+    max-width: 600px;
+  }
+
+  .vault-card {
+    min-height: 360px;
+  }
+
+}
+
+@media (max-width: 500px) {
+
+  .login-page {
+    padding: 22px 16px 35px;
+  }
+
+  .login-card,
+  .vault-card {
+    padding: 32px 24px;
+  }
+
+  .login-title h1 {
+    font-size: 26px;
+  }
+
+}
