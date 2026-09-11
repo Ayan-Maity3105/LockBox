@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import Splash from './pages/Splash';
+import Register from './pages/Register';
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
 
         <Route
           path="/register"
-          element={<h1>Register Page</h1>}
+          element={<Register />}
         />
 
         <Route
