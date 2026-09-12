@@ -1,16 +1,32 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate
+} from 'react-router-dom';
 
 import Splash from './pages/Splash';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+
+import ProtectedRoute from './components/ProtectedRoute';
+
 
 function App() {
+
   return (
+
     <BrowserRouter>
 
       <Routes>
 
-        <Route path="/" element={<Splash />} />
+        {/* PUBLIC ROUTES */}
+
+        <Route
+          path="/"
+          element={<Splash />}
+        />
 
         <Route
           path="/register"
@@ -22,20 +38,37 @@ function App() {
           element={<Login />}
         />
 
-        <Route
-          path="/dashboard"
-          element={<h1>Dashboard</h1>}
-        />
+
+        {/* PROTECTED ROUTES */}
+
+        <Route element={<ProtectedRoute />}>
+
+          <Route
+            path="/dashboard"
+            element={<Dashboard />}
+          />
+
+        </Route>
+
+
+        {/* UNKNOWN ROUTES */}
 
         <Route
           path="*"
-          element={<Navigate to="/" replace />}
+          element={
+            <Navigate
+              to="/"
+              replace
+            />
+          }
         />
 
       </Routes>
 
     </BrowserRouter>
+
   );
 }
+
 
 export default App;
