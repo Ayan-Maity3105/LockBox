@@ -17,12 +17,11 @@ import {
 } from "lucide-react";
 
 import { useNavigate } from "react-router-dom";
-
 import SecurityMeshBackground from "../components/SecurityMeshBackground";
 import GlassPanel from "../components/GlassPanel";
 import api from "../services/api";
-
 import "./Dashboard.css";
+import AddSecretModal from "../components/AddSecretModal";
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -47,6 +46,8 @@ function Dashboard() {
 
   const [visibleSecrets, setVisibleSecrets] = useState({});
 
+  const [showAddSecret, setShowAddSecret] = useState(false);
+
   useEffect(() => {
     const handlePageShow = () => {
       const token = localStorage.getItem("token");
@@ -56,7 +57,7 @@ function Dashboard() {
           replace: true,
         });
       }
-    };  
+    };
 
     window.addEventListener("pageshow", handlePageShow);
 
@@ -312,9 +313,7 @@ function Dashboard() {
 
                 <button
                   className="add-secret-button"
-                  onClick={() => {
-                    // Add Secret modal will be added next
-                  }}
+                  onClick={() => setShowAddSecret(true)}
                 >
                   <Plus size={16} />
                   Add Secret
@@ -418,6 +417,13 @@ function Dashboard() {
           </GlassPanel>
         </div>
       </div>
+
+      {showAddSecret && (
+        <AddSecretModal
+          onClose={() => setShowAddSecret(false)}
+          onCreated={fetchVaultItems}
+        />
+      )}
     </SecurityMeshBackground>
   );
 }
