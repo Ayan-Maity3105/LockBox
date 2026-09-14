@@ -22,6 +22,7 @@ import GlassPanel from "../components/GlassPanel";
 import api from "../services/api";
 import "./Dashboard.css";
 import AddSecretModal from "../components/AddSecretModal";
+import EditSecretModal from "../components/EditSecretModal";
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -47,6 +48,10 @@ function Dashboard() {
   const [visibleSecrets, setVisibleSecrets] = useState({});
 
   const [showAddSecret, setShowAddSecret] = useState(false);
+
+  const [showEditSecret, setShowEditSecret] = useState(false);
+
+  const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
     const handlePageShow = () => {
@@ -401,11 +406,43 @@ function Dashboard() {
                           )}
                         </button>
 
-                        <button title="Edit">
+                        <button
+                          title="Edit"
+                          onClick={() => {
+                            setSelectedItem(item);
+                            setShowEditSecret(true);
+                          }}
+                        >
                           <Pencil size={14} />
                         </button>
 
-                        <button title="Delete">
+                        <button
+                          title="Delete"
+                          onClick={async () => {
+                            const confirmed = window.confirm(
+                              `Delete "${item.title}" permanently?`,
+                            );
+
+                            if (!confirmed) {
+                              return;
+                            }
+
+                            try {
+                              await api.delete(`/vault/${item.id}`);
+
+                              await fetchVaultItems();
+                            } catch (err) {
+                              console.error(
+                                "Failed to delete vault item:",
+                                err,
+                              );
+
+                              alert(
+                                "Unable to delete secret. Please try again.",
+                              );
+                            }
+                          }}
+                        >
                           <Trash2 size={14} />
                         </button>
                       </div>
@@ -422,6 +459,17 @@ function Dashboard() {
         <AddSecretModal
           onClose={() => setShowAddSecret(false)}
           onCreated={fetchVaultItems}
+        />
+      )}
+
+      {showEditSecret && selectedItem && (
+        <EditSecretModal
+          item={selectedItem}
+          onClose={() => {
+            setShowEditSecret(false);
+            setSelectedItem(null);
+          }}
+          onUpdated={fetchVaultItems}
         />
       )}
     </SecurityMeshBackground>
