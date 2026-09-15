@@ -14,6 +14,8 @@ import {
   Trash2,
   Search,
   Plus,
+  Copy,
+  Check,
 } from "lucide-react";
 
 import { useNavigate } from "react-router-dom";
@@ -54,6 +56,8 @@ function Dashboard() {
   const [selectedItem, setSelectedItem] = useState(null);
 
   const [activeSection, setActiveSection] = useState("Dashboard");
+
+  const [copiedSecret, setCopiedSecret] = useState(null);
 
   useEffect(() => {
     const handlePageShow = () => {
@@ -172,6 +176,20 @@ function Dashboard() {
       ...previous,
       [id]: !previous[id],
     }));
+  };
+
+  const copySecret = async (item) => {
+    try {
+      await navigator.clipboard.writeText(item.secret);
+
+      setCopiedSecret(item.id);
+
+      setTimeout(() => {
+        setCopiedSecret(null);
+      }, 1500);
+    } catch (err) {
+      console.error("Failed to copy secret:", err);
+    }
   };
 
   // ================= LOGOUT =================
@@ -451,6 +469,8 @@ function Dashboard() {
                       {/* ACTIONS */}
 
                       <div className="vault-actions">
+                        {/* SHOW / HIDE */}
+
                         <button
                           title="Show / Hide"
                           onClick={() => toggleSecret(item.id)}
@@ -462,6 +482,22 @@ function Dashboard() {
                           )}
                         </button>
 
+                        {/* COPY */}
+
+                        <button
+                          title="Copy Secret"
+                          onClick={() => copySecret(item)}
+                          className={copiedSecret === item.id ? "copied" : ""}
+                        >
+                          {copiedSecret === item.id ? (
+                            <Check size={14} />
+                          ) : (
+                            <Copy size={14} />
+                          )}
+                        </button>
+
+                        {/* EDIT */}
+
                         <button
                           title="Edit"
                           onClick={() => {
@@ -471,6 +507,8 @@ function Dashboard() {
                         >
                           <Pencil size={14} />
                         </button>
+
+                        {/* DELETE */}
 
                         <button
                           title="Delete"
