@@ -272,9 +272,11 @@ function Dashboard() {
             </nav>
 
             <div className="sidebar-bottom">
-              <button className="nav-item">
+              <button
+                className="nav-item"
+                onClick={() => navigate("/settings")}
+              >
                 <Settings size={17} />
-
                 <span>Settings</span>
               </button>
 
