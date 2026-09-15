@@ -53,6 +53,8 @@ function Dashboard() {
 
   const [selectedItem, setSelectedItem] = useState(null);
 
+  const [activeSection, setActiveSection] = useState("Dashboard");
+
   useEffect(() => {
     const handlePageShow = () => {
       const token = localStorage.getItem("token");
@@ -125,22 +127,43 @@ function Dashboard() {
   ).length;
 
   // ================= SEARCH =================
-
   const filteredItems = useMemo(() => {
+    let items = vaultItems;
+
+    if (activeSection === "Passwords") {
+      items = items.filter((item) => item.type?.toLowerCase() === "password");
+    }
+
+    if (activeSection === "API Keys") {
+      items = items.filter(
+        (item) =>
+          item.type?.toLowerCase() === "api key" ||
+          item.type?.toLowerCase() === "apikey",
+      );
+    }
+
+    if (activeSection === "Notes") {
+      items = items.filter(
+        (item) =>
+          item.type?.toLowerCase() === "note" ||
+          item.type?.toLowerCase() === "secret note",
+      );
+    }
+
     const search = searchTerm.toLowerCase().trim();
 
     if (!search) {
-      return vaultItems;
+      return items;
     }
 
-    return vaultItems.filter(
+    return items.filter(
       (item) =>
         item.title?.toLowerCase().includes(search) ||
         item.type?.toLowerCase().includes(search) ||
         item.username?.toLowerCase().includes(search) ||
         item.website?.toLowerCase().includes(search),
     );
-  }, [vaultItems, searchTerm]);
+  }, [vaultItems, searchTerm, activeSection]);
 
   // ================= SECRET TOGGLE =================
 
@@ -196,33 +219,54 @@ function Dashboard() {
             </div>
 
             <nav className="sidebar-nav">
-              <button className="nav-item active">
+              <button
+                className={
+                  activeSection === "Dashboard" ? "nav-item active" : "nav-item"
+                }
+                onClick={() => setActiveSection("Dashboard")}
+              >
                 <LayoutDashboard size={17} />
 
                 <span>Dashboard</span>
               </button>
 
-              <button className="nav-item">
+              <button
+                className={
+                  activeSection === "Vault" ? "nav-item active" : "nav-item"
+                }
+                onClick={() => setActiveSection("Vault")}
+              >
                 <LockKeyhole size={17} />
-
                 <span>Vault</span>
               </button>
 
-              <button className="nav-item">
+              <button
+                className={
+                  activeSection === "Passwords" ? "nav-item active" : "nav-item"
+                }
+                onClick={() => setActiveSection("Passwords")}
+              >
                 <KeyRound size={17} />
-
                 <span>Passwords</span>
               </button>
 
-              <button className="nav-item">
+              <button
+                className={
+                  activeSection === "API Keys" ? "nav-item active" : "nav-item"
+                }
+                onClick={() => setActiveSection("API Keys")}
+              >
                 <Link size={17} />
-
                 <span>API Keys</span>
               </button>
 
-              <button className="nav-item">
+              <button
+                className={
+                  activeSection === "Notes" ? "nav-item active" : "nav-item"
+                }
+                onClick={() => setActiveSection("Notes")}
+              >
                 <FileText size={17} />
-
                 <span>Notes</span>
               </button>
             </nav>
@@ -311,9 +355,19 @@ function Dashboard() {
             <section className="vault-section">
               <div className="vault-header">
                 <div>
-                  <h2>Your Vault</h2>
+                  <h2>
+                    {activeSection === "Dashboard"
+                      ? "Your Vault"
+                      : activeSection === "Vault"
+                        ? "Your Vault"
+                        : `Your ${activeSection}`}
+                  </h2>
 
-                  <p>Your encrypted secrets</p>
+                  <p>
+                    {activeSection === "Dashboard"
+                      ? "Your encrypted secrets"
+                      : `Manage your stored ${activeSection.toLowerCase()}`}
+                  </p>
                 </div>
 
                 <button
